@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Request - CampusConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">CampusConnect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="request_form.html">New Request</a></li>
+                    <li class="nav-item"><a class="nav-link" href="student_dashboard.html">My Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin_dashboard.html">Admin Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-white border-0 pt-4 pb-0">
+                        <h2 class="h3 fw-bold text-center text-primary">Submit Service Request</h2>
+                        <p class="text-center text-muted">Please fill in the details below to report an issue.</p>
+                    </div>
+                    <div class="card-body p-5">
+                        <form id="requestForm" novalidate>
+
+                            <!-- Personal Info Section -->
+                            <h5 class="mb-3 text-secondary border-bottom pb-2">Personal Information</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="studentName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="studentName" required>
+                                    <div class="invalid-feedback">Please enter your full name.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="studentId" class="form-label">ID Number</label>
+                                    <input type="text" class="form-control" id="studentId" placeholder="e.g., S123456 or F123456"
+                                        required>
+                                    <div class="invalid-feedback">Please enter a valid ID (e.g., S123456).</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+
+                            <!-- Request Details Section -->
+                            <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Issue Details</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="category" class="form-label">Service Category</label>
+                                    <select class="form-select" id="category" required>
+                                        <option value="" selected disabled>Choose category...</option>
+                                        <option value="Hostel">Hostel Issue</option>
+                                        <option value="Classroom">Classroom Repair</option>
+                                        <option value="Transport">Transport Complaint</option>
+                                        <option value="Facility">Facility Maintenance</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a category.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="priority" class="form-label">Priority Level</label>
+                                    <select class="form-select" id="priority" required>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium" selected>Medium</option>
+                                        <option value="High">High</option>
+                                        <option value="Critical">Critical</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Location (Building/Room)</label>
+                                <input type="text" class="form-control" id="location"
+                                    placeholder="e.g., Block A, Room 304" required>
+                                <div class="invalid-feedback">Please specify the location.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="description" class="form-label">Description of Issue</label>
+                                <textarea class="form-control" id="description" rows="4"
+                                    placeholder="Describe the problem in detail..." required></textarea>
+                                <div class="invalid-feedback">Please provide a description.</div>
+                            </div>
+
+                            <!-- HTML Table usage as requested, for summary or display, though form is better with divs. 
+                                 Let's add a small table for "Previous related requests" as a dummy or just rely on the layout above.
+                                 Note: User asked for "Create Service Request Form using HTML forms and tables."
+                                 Using pure tables for layout is bad practice (accessibility), so I used Bootstrap grid blocks above.
+                                 I will insert a small table element here to strictly satisfy the requirement "forms and tables" if interpreted literally to use table for layout sections, 
+                                 But I will assume they mean *form elements* and *data tables*. 
+                                 However, to be safe, I'll add a section called "Additional Checklist" using a table layout just to tick the box, or better yet, keep it modern.
+                                 Actually, let's Stick to Bootstrap grid for the main form for responsiveness. 
+                                 I will add a read-only table at the bottom for "Common Issue Codes" for reference. -->
+
+                            <div class="mb-4">
+                                <button class="btn btn-link text-decoration-none p-0" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#helpTable">
+                                    Need help with categories? View Reference Table
+                                </button>
+                                <div class="collapse mt-2" id="helpTable">
+                                    <table class="table table-bordered table-sm text-muted" style="font-size: 0.9rem;">
+                                        <thead>
+                                            <tr class="table-light">
+                                                <th>Category</th>
+                                                <th>Examples</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Hostel</td>
+                                                <td>Broken bed, room cleaning, water supply</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Classroom</td>
+                                                <td>Projector fault, broken chair, lights</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Transport</td>
+                                                <td>Bus delay, rude behavior, route issue</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Facility</td>
+                                                <td>Gym equipment, Wi-Fi, Cafeteria</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">Submit
+                                    Request</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/validation.js"></script>
+</body>
+
+</html>
