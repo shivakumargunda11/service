@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -15,6 +16,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/requests', require('./routes/requestRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+
+// Serve Frontend
+app.use(express.static(path.join(__dirname, '../')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'));
+});
 
 // Basic error handler
 app.use((err, req, res, next) => {

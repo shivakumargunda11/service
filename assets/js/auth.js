@@ -1,5 +1,5 @@
 // auth.js
-const API_URL = 'http://localhost:5000/api/users';
+const API_URL = '/api/users';
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
