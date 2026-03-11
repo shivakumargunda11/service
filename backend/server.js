@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const cors = require('cors');
 const connectDB = require('./config/db');
 
@@ -20,7 +20,7 @@ app.use('/api/users', require('./routes/userRoutes'));
 // Serve Frontend
 app.use(express.static(path.join(__dirname, '../')));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
 
